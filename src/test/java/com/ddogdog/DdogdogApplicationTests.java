@@ -1,4 +1,4 @@
-package com.wdkong.ddogdog;
+package com.ddogdog;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
