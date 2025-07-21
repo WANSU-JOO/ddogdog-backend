@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ddogdog.dao.UserDao">
+    <!-- 사용자 조회 -->
+    <select id="getUserById" parameterType="string" resultType="map">
+        SELECT * FROM user WHERE user_id = #{userId}
+    </select>
+    
+    <!-- 사용자 등록 -->
+    <insert id="insertUser" parameterType="map">
+        INSERT INTO user (user_id, username, password, email)
+        VALUES (#{userId}, #{username}, #{password}, #{email})
+    </insert>
+    
+    <!-- 사용자 정보 수정 -->
+    <update id="updateUser" parameterType="map">
+        UPDATE user
+        SET username = #{username},
+            email = #{email}
+        WHERE user_id = #{userId}
+    </update>
+    
+    <!-- 사용자 삭제 -->
+    <delete id="deleteUser" parameterType="string">
+        DELETE FROM user WHERE user_id = #{userId}
+    </delete>
+</mapper> 
