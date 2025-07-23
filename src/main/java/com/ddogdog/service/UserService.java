@@ -1,21 +1,26 @@
 package com.ddogdog.service;
 
-import org.springframework.stereotype.Service;
 import com.ddogdog.dao.UserDao;
 import com.ddogdog.dto.User;
-
-import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class UserService {
-    private final UserDao userDao;  // final로 선언하고 생성자 주입 방식 사용
-    
-    public User getUser(String userId) {
-        return userDao.getUserById(userId);
+    private final UserDao userDao;
+
+    public UserService(UserDao userDao) {
+        this.userDao = userDao;
     }
 
-    public void createUser(User user) {
-        userDao.insertUser(user);
+    public User findByKakaoId(Long kakaoId) {
+        return userDao.findByKakaoId(kakaoId);
+    }
+
+    public void register(User user) {
+        userDao.save(user);
+    }
+
+    public User findByUsername(String username) {
+        return userDao.findByUsername(username);
     }
 }

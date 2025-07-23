@@ -29,7 +29,6 @@ public class AuthController {
     @PostMapping("/kakao")
     public LoginResponse kakaoLogin(@RequestBody Map<String, String> body) {
         String code = body.get("code");
-        System.err.println(code);
-        return new LoginResponse("kakao_token");
+        return authService.kakaoLogin(code);
     }
 }
