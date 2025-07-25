@@ -30,4 +30,10 @@ public class AuthController {
         String code = body.get("code");
         return authService.kakaoLogin(code);
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Map<String, String>> logout(@RequestHeader("Authorization") String token) {
+        authService.logout(token);
+        return ResponseEntity.ok(Map.of("message", "Successfully logged out"));
+    }
 }

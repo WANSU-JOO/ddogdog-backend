@@ -29,8 +29,8 @@ public class JwtFilter extends GenericFilter {
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring(7);
             try {
-                if (!jwtUtil.isTokenExpired(token)) {
-                    String username = jwtUtil.getUsername(token);
+                if (!jwtUtil.isBlacklisted(token)) {
+                    String username = jwtUtil.extractUserId(token);
                     UsernamePasswordAuthenticationToken auth =
                             new UsernamePasswordAuthenticationToken(username, null, null);
                     SecurityContextHolder.getContext().setAuthentication(auth);

@@ -92,6 +92,13 @@ public class AuthService {
         throw new RuntimeException("Invalid credentials");
     }
 
+    public void logout(String token) {
+        if (token != null && token.startsWith("Bearer ")) {
+            String jwt = token.substring(7);
+            jwtUtil.addToBlacklist(jwt);
+        }
+    }
+
     private String getKakaoAccessToken(String code) {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "authorization_code");
